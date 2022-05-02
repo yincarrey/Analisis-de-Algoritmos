@@ -6,7 +6,7 @@
 #define MAX 100
 
 void initialization(int size);
-void *MetodoBurbuja(int *array, int size);
+void MetodoInsercionDirecta(int *array, int size);
 
 int main(){
     
@@ -42,27 +42,27 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoBurbuja(array, size);
-        }
-        
+            MetodoInsercionDirecta(array, size);
+        }     
     }
-    
 }
 
-void *MetodoBurbuja(int *array, int size){
+void MetodoInsercionDirecta(int *array, int size){
 
-    int aux = 0;
-    
+    int pos, aux;
+
     for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+        
+        pos = i;
+        aux = array[i];
 
-            if(array[j] > array[j+1]){
-
-                aux = array[j];
-                array[j] = array[j+1];
-                array[j+1] = aux;
-            }
+        while ((pos > 0) && (aux < array[pos-1])){
+            
+            array[pos] = array[pos-1];
+            pos--;
         }
+
+        array[pos] = aux;
     }
 
     for (int i = 0; i < size; i++){
@@ -70,4 +70,5 @@ void *MetodoBurbuja(int *array, int size){
     }
 
     free(array);
-};
+    
+}
