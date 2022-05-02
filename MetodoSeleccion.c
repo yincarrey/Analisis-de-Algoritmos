@@ -6,7 +6,7 @@
 #define MAX 100
 
 void initialization(int size);
-void MetodoBurbuja(int *array, int size);
+void MetodoSeleccion(int *array, int size);
 
 int main(){
     
@@ -42,30 +42,31 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoBurbuja(array, size);
+            MetodoSeleccion(array, size);
         }   
     }
 }
 
-void MetodoBurbuja(int *array, int size){
+void MetodoSeleccion(int *array, int size){
 
-    int aux = 0;
-    
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    int aux, min;
 
-            if(array[j] > array[j+1]){
+    for (int i = 0; i < size-1; i++){
+        min = i;
+        for (int j = i+1; j < size; j++){
 
-                aux = array[j];
-                array[j] = array[j+1];
-                array[j+1] = aux;
-            }
+            if (array[j] < array[min]){
+                min = j;
+            }  
         }
+        aux = array[i];
+        array[i] = array[min];
+        array[min] = aux;
     }
-
+    
     for (int i = 0; i < size; i++){
         printf("%d\t", array[i]);
     }
 
     free(array);
-};
+}

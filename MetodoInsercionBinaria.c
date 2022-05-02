@@ -6,7 +6,7 @@
 #define MAX 100
 
 void initialization(int size);
-void MetodoBurbuja(int *array, int size);
+void MetodoInsercionBinaria(int *array, int size);
 
 int main(){
     
@@ -42,25 +42,35 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoBurbuja(array, size);
-        }   
+            MetodoInsercionBinaria(array, size);
+        }     
     }
 }
 
-void MetodoBurbuja(int *array, int size){
+void MetodoInsercionBinaria(int *array, int size){
 
-    int aux = 0;
-    
-    for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; j++){
+    int aux, first, last, mid;
 
-            if(array[j] > array[j+1]){
+    for (int i = 1; i < size; i++){
 
-                aux = array[j];
-                array[j] = array[j+1];
-                array[j+1] = aux;
+        aux = array[i];
+        first = 0;
+        last = i-1;
+
+        while (first <= last){
+            mid = (int) ((first + last)/2);
+            if (aux <= array[mid]){
+                last = mid - 1;
+            }
+            else{
+                first = mid + 1;
             }
         }
+
+        for (int k = i - 1; k >= first; k--){
+            array[k+1] = array[k];
+        }
+        array[first] = aux;  
     }
 
     for (int i = 0; i < size; i++){
@@ -68,4 +78,4 @@ void MetodoBurbuja(int *array, int size){
     }
 
     free(array);
-};
+}
