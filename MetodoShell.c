@@ -6,7 +6,7 @@
 #define MAX 100
 
 void initialization(int size);
-void MetodoBurbuja(int *array, int size);
+void MetodoShell(int *array, int size);
 
 int main(){
     
@@ -42,24 +42,28 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoBurbuja(array, size);
+            MetodoShell(array, size);
         }   
     }
 }
 
-void MetodoBurbuja(int *array, int size){
 
-    int aux = 0;
-    
-    for (int i = 0; i < size; i++){
-        for (int j = size-1; j > i; j--){
 
-            if(array[j-1] > array[j]){
+void  MetodoShell(int *array, int size){
 
-                aux = array[j-1];
-                array[j-1] = array[j];
-                array[j] = aux;
+    int temp, j;
+
+    for (int gap = size / 2; gap > 0; gap /= 2){
+
+        for (int i = gap; i < size; i += 1){
+
+            temp = array[i];
+
+            for (j = i; j >= gap && array[j - gap] > temp; j -= gap){
+                array[j] = array[j - gap];
             }
+            array[j] = temp;
+                
         }
     }
 
@@ -68,4 +72,4 @@ void MetodoBurbuja(int *array, int size){
     }
 
     free(array);
-};
+}

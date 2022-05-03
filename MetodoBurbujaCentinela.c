@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<stdbool.h>
 #include <time.h>
 
 #define MIN 10
 #define MAX 100
 
 void initialization(int size);
-void MetodoBurbuja(int *array, int size);
+void MetodoBurbujaCentinela(int *array, int size);
 
 int main(){
     
@@ -42,16 +43,19 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoBurbuja(array, size);
+            MetodoBurbujaCentinela(array, size);
         }   
     }
 }
 
-void MetodoBurbuja(int *array, int size){
+void MetodoBurbujaCentinela(int *array, int size){
 
     int aux = 0;
+    bool centinela = true;
     
     for (int i = 0; i < size; i++){
+
+        centinela = false;
         for (int j = size-1; j > i; j--){
 
             if(array[j-1] > array[j]){
@@ -59,7 +63,12 @@ void MetodoBurbuja(int *array, int size){
                 aux = array[j-1];
                 array[j-1] = array[j];
                 array[j] = aux;
+                centinela = true;
             }
+        }
+
+        if (centinela == false){
+            break;
         }
     }
 
