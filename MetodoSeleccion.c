@@ -46,6 +46,8 @@ void initialization(){
 void MetodoSeleccion(int *array){
 
     int aux, min;
+    
+    clock_t start = clock();
 
     for (int i = 0; i < size-1; i++){
         min = i;
@@ -65,4 +67,8 @@ void MetodoSeleccion(int *array){
     }
 
     free(array);
+
+    clock_t stop = clock();
+    double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tiempo transcurrido en ms: %.4f", elapsed);
 }

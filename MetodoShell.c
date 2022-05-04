@@ -49,6 +49,8 @@ void  MetodoShell(int *array){
 
     int temp, j;
 
+    clock_t start = clock();
+
     for (int gap = size / 2; gap > 0; gap /= 2){
 
         for (int i = gap; i < size; i += 1){
@@ -68,4 +70,8 @@ void  MetodoShell(int *array){
     }
 
     free(array);
+
+    clock_t stop = clock();
+    double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tiempo transcurrido en ms: %.4f", elapsed);
 }

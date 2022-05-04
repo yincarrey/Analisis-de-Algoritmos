@@ -47,6 +47,8 @@ void MetodoInsercionDirecta(int *array){
 
     int pos, aux;
 
+    clock_t start = clock();
+
     for (int i = 0; i < size; i++){
         
         pos = i;
@@ -66,5 +68,9 @@ void MetodoInsercionDirecta(int *array){
     }
 
     free(array);
+
+    clock_t stop = clock();
+    double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tiempo transcurrido en ms: %.4f", elapsed);
     
 }

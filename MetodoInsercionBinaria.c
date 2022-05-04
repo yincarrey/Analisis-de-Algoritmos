@@ -46,6 +46,8 @@ void initialization(){
 void MetodoInsercionBinaria(int *array){
 
     int aux, first, last, mid;
+    
+    clock_t start = clock();
 
     for (int i = 1; i < size; i++){
 
@@ -74,4 +76,9 @@ void MetodoInsercionBinaria(int *array){
     }
 
     free(array);
+
+    clock_t stop = clock();
+    double elapsed = (double)(stop - start) * 1000.0 / CLOCKS_PER_SEC;
+    printf("Tiempo transcurrido en ms: %.4f", elapsed);
+    
 }
