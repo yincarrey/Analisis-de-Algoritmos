@@ -4,22 +4,18 @@
 
 #define MIN 10
 #define MAX 100
+#define size 100
 
-void initialization(int size);
-void MetodoShell(int *array, int size);
+void initialization();
+void MetodoShell(int *array);
 
 int main(){
     
-    int size;
-
-    printf("Ingresar largo del array: ");
-    scanf("%d", &size);
-
-    initialization(size);
+    initialization();
     return 0;
 };
 
-void initialization(int size){
+void initialization(){
 
     int *array;
     
@@ -42,14 +38,14 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoShell(array, size);
+            MetodoShell(array);
         }   
     }
 }
 
 
 
-void  MetodoShell(int *array, int size){
+void  MetodoShell(int *array){
 
     int temp, j;
 

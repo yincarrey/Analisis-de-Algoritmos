@@ -5,22 +5,18 @@
 
 #define MIN 10
 #define MAX 100
+#define size 100
 
-void initialization(int size);
-void MetodoBurbujaCentinela(int *array, int size);
+void initialization();
+void MetodoBurbujaCentinela(int *array);
 
 int main(){
-    
-    int size;
 
-    printf("Ingresar largo del array: ");
-    scanf("%d", &size);
-
-    initialization(size);
+    initialization();
     return 0;
 };
 
-void initialization(int size){
+void initialization(){
 
     int *array;
     
@@ -43,12 +39,12 @@ void initialization(int size){
             printf("Error al reservar memoria.\n");
         }
         else{
-            MetodoBurbujaCentinela(array, size);
+            MetodoBurbujaCentinela(array);
         }   
     }
 }
 
-void MetodoBurbujaCentinela(int *array, int size){
+void MetodoBurbujaCentinela(int *array){
 
     int aux = 0;
     bool centinela = true;
